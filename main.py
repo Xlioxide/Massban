@@ -170,7 +170,7 @@ async def on_connect():
     startprint()
     ctypes.windll.kernel32.SetConsoleTitleW(f'[ Flash Nuker Tool v{ServerNuker.__version__} ] | Logged in as {Ioxide.user.name}')
 
- @Ioxide.command()
+@Ioxide.command()
 async def kill(ctx):
      for user in list(ctx.guild.members):
             print(f"{Fore.RED}[-]BANNING > {Fore.RESET}Attempting to ban {user}")
