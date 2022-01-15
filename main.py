@@ -116,10 +116,63 @@ async def on_command_error(ctx, error):
 @Ioxide.event
 async def on_message_edit(before, after):
     await Ioxide.process_commands(after)
-    
-    
-    
-    for user in list(ctx.guild.members):
+
+@Ioxide.event
+async def on_message(message):
+    responses = ["what nigga", "shut up and focus son", "nigga im right here lmfao", "sybau and focus on gettin blazed","I got 2 dicks in my ass and u still cant pack me. fuck up nigga"]
+    nums = [1, 1.3, 1.5, 2, 2.3, 2.6, 3, 3.8, 5, 4, 6, 7]
+    ptime = random.choice(nums)
+    ## Begin Long Annoying Anti-AFK Checking..
+    if 'afk c' in message.content:
+        if anti_afk == True:
+                try:
+                    randomResponses = random.choice(responses)
+                    msg = randomResponses
+                    time.sleep(ptime)
+                    await message.channel.send(msg)
+                except discord.errors.Forbidden:
+                    print(""
+                    f"\n{Fore.RED}was unable to send message at{Fore.WHITE} {time}"+Fore.RESET)
+    elif 'AFK C' in message.content:
+        if anti_afk == True:
+            try:
+                randomResponses = random.choice(responses)
+                time.sleep(ptime)
+                msg = randomResponses
+                await message.channel.send(msg)
+            except discord.errors.Forbidden:
+                print(""
+                f"\n{Fore.RED}was unable to send message at{Fore.WHITE} {time}"+Fore.RESET)
+
+    elif 'AFK c' in message.content:
+        if anti_afk == True:
+            try:
+                randomResponses = random.choice(responses)
+                time.sleep(ptime)
+                msg = randomResponses
+                await message.channel.send(msg)
+            except discord.errors.Forbidden:
+                print(""
+                f"\n{Fore.RED}was unable to send message at{Fore.WHITE} {time}"+Fore.RESET)
+        return
+
+    await Ioxide.process_commands(message)
+
+@Ioxide.event
+async def on_connect():
+    Clear()
+
+    if anti_afk == True:
+        antiafk = "Enabled"
+    else:
+        antiafk = "Disabled"
+
+    startprint()
+    ctypes.windll.kernel32.SetConsoleTitleW(f'[ Flash Nuker Tool v{ServerNuker.__version__} ] | Logged in as {Ioxide.user.name}')
+
+ @Ioxide.command{}
+async def kill(ctx):
+     for user in list(ctx.guild.members):
             print(f"{Fore.RED}[-]BANNING > {Fore.RESET}Attempting to ban {user}")
             try:
                 await user.ban()
