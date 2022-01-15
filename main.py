@@ -1,4 +1,4 @@
-    class ServerNuker():
+class ServerNuker():
     __version__ = 3.5
 
 import discord, subprocess, sys, time, os, colorama, base64, codecs, datetime, io, random, numpy, datetime, smtplib, string, ctypes, pokepy
